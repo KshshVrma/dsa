@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums) {
+        if(nums.size()==3){
+            return nums[0]*nums[1]*nums[2];
+        }
+        vector<int>one;vector<int>two;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>=0){
+                one.push_back(nums[i]);
+            }
+            else{
+                two.push_back(nums[i]);
+                
+            }
+        }
+        sort(one.begin(),one.end(),greater<int>());
+        sort(two.begin(),two.end());
+        
+        if(two.size()<2&&one.size()>=3){
+            int temp=one[0]*one[1]*one[2];
+            return temp;
+        }
+        else{
+            if(one.size()>=3){
+                int temp=one[0]*one[1]*one[2];
+                 if(two[0]*two[1]*one[0]>temp){
+                return two[0]*two[1]*one[0];
+            }
+            else{
+                return temp;
+            }
+}else{
+                if(one.size()==0){
+                    return two[two.size()-2]*two[two.size()-3]*two[two.size()-1];
+                }
+               if(one.size()==1){
+                   return two[0]*two[1]*one[0];
+               }
+                else{
+                    int k=two[0]*two[1]*one[0];
+                    int l=one[0]*one[1]*two[two.size()-1];
+                    return max(k,l);
+                }
+            }
+           
+        }
+    }
+};
