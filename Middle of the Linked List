@@ -1,0 +1,14 @@
+   ListNode* middleNode(ListNode* head) {
+        ListNode*temp=head;int count=0;
+        while(temp!=NULL){
+            count++;
+            temp=temp->next;
+        }
+        ListNode*var=head;
+        // if(count%2==0){
+            for(int i=0;i<count/2;i++){
+                var=var->next;
+            }
+
+        return var;
+        }
