@@ -1,0 +1,38 @@
+int isPossible (string s)
+{
+    // your code here
+    int ans;
+    unordered_map<char,int>mp;
+    for(int i=0;i<s.length();i++){
+        auto it=mp.find(s[i]);
+        if(it!=mp.end()){
+            mp[s[i]]++;
+        }
+        else{
+            mp[s[i]]=1;
+        }
+    }
+    int count=0;
+    for(auto it=mp.begin();it!=mp.end();it++){
+        if(it->second%2!=0){
+            count++;
+        }
+    }
+    if(s.length()%2==0){
+        if(count==0){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    else{
+        if(count==1){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    
+}
