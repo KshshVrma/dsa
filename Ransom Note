@@ -1,0 +1,18 @@
+    bool canConstruct(string ransomNote, string magazine) {
+        int arr[26]={0};
+        int brr[26]={0};
+        for(int i=0;i<ransomNote.size();i++){
+            arr[ransomNote[i]-97]++;
+        }
+         for(int i=0;i<magazine.size();i++){
+            brr[magazine[i]-97]++;
+        }
+        for(int i=0;i<26;i++){
+            if(brr[i]<arr[i]){
+                return false;
+            }
+}
+        return true;
+        
+        
+    }
