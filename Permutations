@@ -1,0 +1,30 @@
+  void ater(vector<vector<int>>&ans,vector<int>&th,vector<int>nums,int arr[]){
+        if(th.size()==nums.size()){
+            ans.push_back(th);
+            return;
+        }
+        for(int i=0;i<nums.size();i++){
+            
+            if(!arr[i]){
+                
+                th.push_back(nums[i]);
+                arr[i]=1;
+                ater(ans,th,nums,arr);
+                arr[i]=0;
+                th.pop_back();
+
+            }
+        
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>th;
+        int arr[nums.size()];
+        for(int i=0;i<nums.size();i++){
+            arr[i]=0;
+        }
+        
+        ater(ans,th,nums,arr);
+        return ans;
+    }
