@@ -1,0 +1,70 @@
+//1?
+//10 11
+
+
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+void decToBinary(int n,int count,string &a)
+{
+    int binaryNum[count]={0};
+    int i = 0;
+    while (n > 0) {
+ 
+        binaryNum[i] = n % 2;
+        n = n / 2;
+       i++;
+    }
+    for (int j =count-1; j >=0;j--)
+        a+= to_string(binaryNum[j]);
+}
+
+int main()
+{
+   string a;
+   cin>>a;
+   vector<string>ans;
+   string temp="";
+   int count=0;
+   int countp;
+   for(int i=0;i<a.size();i++){
+       if(a[i]!='?'){
+           temp+=a[i];
+           countp=1;
+       }
+       if(a[i]=='?'){
+           count++;
+           if(temp.size()!=0)
+           ans.push_back(temp);
+           temp="";
+           if(countp==1){
+               ans.push_back("p");
+           }
+           countp=0;
+          
+       }
+   }
+   ans.push_back(temp);
+   string why="";
+ 
+   
+   for(int i=0;i<pow(2,count);i++){
+       for(int j=0;j<ans.size();j++){
+           if(ans[j]!="p"){
+                   why+=ans[j];
+           }
+         else{
+             string ay="";
+             decToBinary(i,count,ay);
+             why+=ay;
+           ay="";
+         }
+        
+       }
+        cout<<why;
+         why="";
+         cout<<" ";
+   }
+
+    return 0;
+}
