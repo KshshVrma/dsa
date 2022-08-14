@@ -1,0 +1,22 @@
+int f(int N,int W,int val[],int wt[],vector<vector<int>>&dp){
+    if(N==0){
+      
+            return( (int)W/wt[0])*val[0];
+  
+       
+    }
+    if(dp[N][W]!=-1){
+        return dp[N][W];
+    }
+        int ntake=0+f(N-1,W,val,wt,dp);
+        int take=0;
+        if(wt[N]<=W)
+        take=val[N]+f(N,W-wt[N],val,wt,dp);
+        return dp[N][W]=max(ntake,take);
+    
+}
+    int knapSack(int N, int W, int val[], int wt[])
+    {
+        vector<vector<int>>dp(N,vector<int>(W+1,-1));
+      return f(N-1,W,val,wt,dp);
+    }
