@@ -1,0 +1,60 @@
+Input:
+sum = 4 , 
+N = 3
+coins[] = {1,2,3}
+Output: 4
+Explanation: Four Possible ways are:
+{1,1,1,1},{1,1,2},{2,2},{1,3}.
+
+
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+  public:
+  long long int f(int coins[], int N, int sum,int i,vector<vector<long long int>>&dp){
+      if(sum==0){
+          
+          i++;
+          return 1;
+      }
+      if(i>=N){
+          return 0;
+      }
+      if(dp[sum][i]!=-1){
+          return dp[sum][i];
+      }
+      long long int t=0;
+      if(sum-coins[i]>=0)
+      t= f(coins,N,sum-coins[i],i,dp);
+      long long int k=f(coins,N,sum,i+1,dp);
+      return dp[sum][i]=t+k;
+      
+      
+  }
+    long long int count(int coins[], int N, int sum) {
+        vector<vector<long long int>>dp(sum+1,vector<long long int>(N+1,-1));
+return f(coins,N,sum,0,dp);
+
+        // code here.
+    }
+};
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int sum, N;
+        cin >> sum >> N;
+        int coins[N];
+        for (int i = 0; i < N; i++) cin >> coins[i];
+        Solution ob;
+        cout << ob.count(coins, N, sum) << endl;
+    }
+
+    return 0;
+}
