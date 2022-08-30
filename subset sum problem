@@ -1,0 +1,26 @@
+int f(vector<int>arr,int sum,int i,int n,int curr,vector<vector<int>>&dp){
+     if(curr==sum){
+        return 1;
+    }
+    if(i>=n||curr>sum){
+        return 0;
+    }
+   
+  
+    
+    if(dp[i][curr]!=-1){
+        return  dp[i][curr];
+    }
+    return dp[i][curr]=(f(arr,sum,i+1,n,curr+arr[i],dp)||f(arr,sum,i+1,n,curr,dp));
+}
+    bool isSubsetSum(vector<int>arr, int sum){
+        // code here 
+        int s=0;
+        for(int i=0;i<arr.size();i++){
+            s+=arr[i];
+        }
+        
+        int n=arr.size();
+        vector<vector<int>>dp(101,vector<int>(100005,-1));
+        return f(arr,sum,0,n,0,dp);
+    }
