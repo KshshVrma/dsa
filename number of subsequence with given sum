@@ -1,0 +1,25 @@
+int f(int arr[],int n,long sum,int i,long curr,vector<vector<long>>&dp){
+   
+    if(curr==sum&&i==n){
+        return 1;
+    }
+    if(i>=n||curr>sum){
+        return 0;
+    }
+    if(dp[i][curr]!=-1){
+        return dp[i][curr]%MOD;
+    }
+    return dp[i][curr]=((f(arr,n,sum,i+1,curr+arr[i],dp)%MOD)+
+    (f(arr,n,sum,i+1,curr,dp))%MOD)%MOD;
+}
+	public:
+	int perfectSum(int arr[], int n, int sum)
+	{long s=0;
+        // Your code goes here
+        for(int i=0;i<n;i++){
+            s+=arr[i];
+        }
+        
+        vector<vector<long>>dp(n,vector<long>(s+1,-1));
+        return f(arr,n,sum,0,0,dp);
+	}
